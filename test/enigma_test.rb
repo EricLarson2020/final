@@ -1,6 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/enigma'
+require 'mocha/minitest'
 
 
 
@@ -28,20 +29,110 @@ class EnigmaTest < MiniTest::Test
     expected = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k",
        "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "]
     assert_equal expected, enigma.alphabet
-
-
   end
 
-  def test_it_can_encrypt
-
+  def test_alphabet_hash
     enigma = Enigma.new
+    expected = ({
+      "a" => 0,
+      "b" => 1,
+      "c" => 2,
+      "d" => 3,
+      "e" => 4,
+      "f" => 5,
+      "g" => 6,
+      "h" => 7,
+      "i" => 8,
+      "j" => 9,
+      "k" => 10,
+      "l" => 11,
+      "m" => 12,
+      "n" => 13,
+      "o" => 14,
+      "p" => 15,
+      "q" => 16,
+      "r" => 17,
+      "s" => 18,
+      "t" => 19,
+      "u" => 20,
+      "v" => 21,
+      "w" => 22,
+      "x" => 23,
+      "y" => 24,
+      "z" => 25,
+      " " => 26
+    })
+    assert_equal expected, enigma.alphabet_hash
+  end
 
-  expected= {
-            encryption: "keder ohulw",
-            key: "02715",
-            date: "040895"
-  }
-    assert_equal expected, enigma.encrypt("hello world", "02715", "040895")
+  def test_random_key
+    enigma = Enigma.new
+    enigma.stubs(:rand).returns(5)
+    assert_equal "55555", enigma.random_key
+  end
+
+  def test_it_can_create_shifted_key
+    enigma = Enigma.new
+    expected = {
+      :a => 3,
+      :b => 27,
+      :c => 73,
+      :d => 20
+    }
+    enigma.stubs(:random_key).returns("02715")
+    assert_equal expected, enigma.create_shifted_key("02715", "040895")
+    assert_equal expected, enigma.create_shifted_key("040895")
+  end
+
+
+
+  def test_it_can_convert_to_numbers
+    enigma = Enigma.new
+    user_input = "Hello World"
+    expected = [7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3]
+    assert_equal expected, enigma.convert_to_numbers(user_input)
+  end
+
+
+
+  def test_it_can_shift_numbers
+    enigma = Enigma.new
+    greeting = [7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3]
+    expected = [10, 31, 84, 31, 17, 53, 95, 34, 20, 38, 76]
+    key = {
+      :a => 3,
+      :b => 27,
+      :c => 73,
+      :d => 20
+    }
+    assert_equal expected, enigma.shift_numbers(greeting, key)
+  end
+
+  def test_it_can_convert_to_letters
+    enigma = Enigma.new
+    greeting_shifted = [10, 31, 84, 31, 17, 53, 95, 34, 20, 38, 76]
+    expected = "keder ohulw"
+    assert_equal expected,  enigma.convert_to_letters(greeting_shifted)
+  end
+
+  def test_encrypt
+    enigma = Enigma.new
+    expected= {
+              encryption: "keder ohulw",
+              key: "02715",
+              date: "040895"
+    }
+
+    assert_equal expected, enigma.encrypt("Hello World", "02715", "040895")
+    enigma.stubs(:random_key).returns("02715")
+      assert_equal expected, enigma.encrypt("Hello World", "040895")
+  end
+
+  def test_convert_to_numbers
+    enigma = Enigma.new
+    expected = [10, 4, 3, 4, 17, 26, 14, 20, 11, 22]
+    assert_equal , enigma.convert_to_letters("keder ohulw")
+
 
   end
 
