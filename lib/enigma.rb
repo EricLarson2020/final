@@ -38,11 +38,6 @@ class Enigma
                 :b => key[1..2],
                 :c => key[2..3],
                 :d => key[3..4]}
-    # key_hash.map do |letter, number|
-    #   number.to_s
-    #   number.sub!(/^0/, "")
-    #   number.to_i
-    # end
 
     square_date = (date.to_i ** 2).to_s
     date_hash = {:a => square_date[-4],
@@ -88,7 +83,6 @@ class Enigma
         @alphabet_hash.each do |letter, number|
           if number == reduced_number
             returned_letter = letter
-            # require"pry";binding.pry
           end
         end
       else
@@ -102,6 +96,8 @@ class Enigma
     end
     shifted_letters.join
   end
+
+  
 
 
 end
