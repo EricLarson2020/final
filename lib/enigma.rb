@@ -101,6 +101,14 @@ class Enigma
       end
     end
   end
+
+
+  def convert_to_letters(shifted_numbers)
+    require"pry";binding.pry
+
+  end
+
+
 end
 
 # :encryption => the encrypted String

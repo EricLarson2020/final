@@ -87,6 +87,14 @@ class EnigmaTest < MiniTest::Test
     assert_equal expected, enigma.shift_numbers(greeting, key)
   end
 
+  def test_it_can_convert_to_letters
+    enigma = Enigma.new
+    greeting_shifted = [10, 31, 84, 31, 17, 53, 95, 34, 20, 38, 76]
+    expected = "keder ohulw"
+    assert_equal expected,  enigma.convert_to_letters(shifted_numbers)
+
+  end
+
 
 
   #
