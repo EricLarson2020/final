@@ -80,6 +80,12 @@ class Enigma
   #   :date => date
   #
   # }
+  def create_shifted_key(key, date)
+    require"pry";binding.pry
+
+  end
+
+
   def convert_to_numbers(input)
     input_array = input.downcase.chars
     input_array.map do |letter|

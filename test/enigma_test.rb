@@ -64,12 +64,24 @@ class EnigmaTest < MiniTest::Test
     assert_equal expected, enigma.alphabet_hash
   end
 
+  def test_it_can_create_shifted_key
+    enigma = Enigma.new
+    expected = {
+      :a => 3,
+      :b => 27,
+      :c => 73,
+      :d => 20
+    }
+    assert_equal expected, enigma.create_shifted_key("02715", "040895")
+
+
+  end
+
   def test_it_can_convert_to_numbers
     enigma = Enigma.new
     user_input = "Hello World"
     expected = [7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3]
     assert_equal expected, enigma.convert_to_numbers(user_input)
-
   end
 
 
