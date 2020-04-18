@@ -117,5 +117,10 @@ class Enigma
     }
   end
 
+  def convert_to_numbers(encoded_message)
+
+
+  end
+
 
 end

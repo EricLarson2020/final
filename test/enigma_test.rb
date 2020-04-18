@@ -127,4 +127,13 @@ class EnigmaTest < MiniTest::Test
     enigma.stubs(:random_key).returns("02715")
       assert_equal expected, enigma.encrypt("Hello World", "040895")
   end
+
+  def test_convert_to_numbers
+    enigma = Enigma.new
+    expected = [10, 4, 3, 4, 17, 26, 14, 20, 11, 22]
+    assert_equal , enigma.convert_to_letters("keder ohulw")
+
+
+  end
+
 end
