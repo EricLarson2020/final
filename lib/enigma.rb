@@ -80,9 +80,11 @@ class Enigma
   #   :date => date
   #
   # }
-  def covert_to_numbers(input)
-
-
+  def convert_to_numbers(input)
+    input_array = input.downcase.chars
+    input_array.map do |letter|
+      alphabet_hash[letter]
+    end
   end
 
   def shift_numbers(unshifted_array, key)
