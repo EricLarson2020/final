@@ -1,6 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/enigma'
+require 'mocha/minitest'
 
 
 
@@ -64,6 +65,12 @@ class EnigmaTest < MiniTest::Test
     assert_equal expected, enigma.alphabet_hash
   end
 
+  def test_random_key
+    enigma = Enigma.new
+    enigma.stubs(:rand).returns(5)
+    assert_equal "55555", enigma.random_key
+  end
+
   def test_it_can_create_shifted_key
     enigma = Enigma.new
     expected = {
@@ -72,10 +79,12 @@ class EnigmaTest < MiniTest::Test
       :c => 73,
       :d => 20
     }
+    enigma.stubs(:random_key).returns("02715")
     assert_equal expected, enigma.create_shifted_key("02715", "040895")
-
-
+    assert_equal expected, enigma.create_shifted_key("040895")
   end
+
+
 
   def test_it_can_convert_to_numbers
     enigma = Enigma.new

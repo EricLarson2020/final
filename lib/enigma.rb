@@ -32,7 +32,15 @@ class Enigma
   end
 
 
-  def create_shifted_key(key, date)
+  def random_key
+    key = (0...5).map { [rand(10)] }.join
+  end
+
+
+  def create_shifted_key(key = random_key, date)
+
+    random_key = (0...5).map { [rand(10)] }.join
+
     # require"pry";binding.pry
     key_hash = {:a => key[0..1],
                 :b => key[1..2],
@@ -98,13 +106,16 @@ class Enigma
   end
 
   def encrypt(message, key, date)
-
-
+    shift_key = create_shifted_key(key, date)
+    converted_numbers = convert_to_numbers(message)
+    numbers_shifted = shift_numbers(converted_numbers, shift_key)
+    encryption = convert_to_letters(numbers_shifted)
+    encrypted_message = {
+      encryption: encryption,
+      key: key,
+      date: date
+    }
   end
 
 
 end
-
-# :encryption => the encrypted String
-# :key => the key used for encryption as a String
-# :date => the date used for encryption as a String in the form DDMMYY
