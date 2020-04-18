@@ -53,28 +53,41 @@ class Enigma
 # C offset: The third digit (2)
 # D offset: The fourth digit (5)
 #
-  def encrypt(message, key, date)
-    a = key[0..1]
-    b = key[1..2]
-    c = key[2..3]
-    d = key[3..4]
+  # def encrypt(message, key, date)
+  #   a1 = key[0..1]
+  #   b1 = key[1..2]
+  #   c1 = key[2..3]
+  #   d1 = key[3..4]
+  #
+  #   square_date = (date ** 2).to_s
+  #   a2 = square_date[6]
+  #   b2 = squre_date[7]
+  #   c2 = square_date[8]
+  #   d2 = square_date[9]
+  #
+  #
+  #   a = a1 + a2
+  #   b = b1 + b2
+  #   c = c1 + c2
+  #   d = d1 + d2
+  #
+  #
+  #
+  #
+  # encrypted_message =  {
+  #   :encryption => encrypted_string,
+  #   :key => key,
+  #   :date => date
+  #
+  # }
+  def shift_numbers(unshifted, key)
 
-    square_date = (date ** 2).to_s
-    a = square_date[6]
-    b = squre_date[7]
-    c = square_date[8]
-    d = square_date[9]
 
 
+    require"pry";binding.pry
 
 
-  encrypted_message =  {
-    :encryption => encrypted_string,
-    :key => key,
-    :date => date
-
-  }
-
+  end
 
 
   end
