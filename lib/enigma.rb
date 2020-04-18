@@ -104,8 +104,27 @@ class Enigma
 
 
   def convert_to_letters(shifted_numbers)
-    require"pry";binding.pry
 
+    shifted_letters = shifted_numbers.map do |shifted_number|
+      returned_letter = ""
+      if shifted_number > 26
+        reduced_number = shifted_number % 27
+        @alphabet_hash.each do |letter, number|
+          if number == reduced_number
+            returned_letter = letter
+            # require"pry";binding.pry
+          end
+        end
+      else
+        @alphabet_hash.each do |letter, number|
+          if number == shifted_number
+            returned_letter = letter
+          end
+        end
+      end
+      returned_letter
+    end
+    shifted_letters.join
   end
 
 
