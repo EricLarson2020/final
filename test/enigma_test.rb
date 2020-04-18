@@ -122,6 +122,9 @@ class EnigmaTest < MiniTest::Test
               key: "02715",
               date: "040895"
     }
+
     assert_equal expected, enigma.encrypt("Hello World", "02715", "040895")
+    enigma.stubs(:random_key).returns("02715")
+      assert_equal expected, enigma.encrypt("Hello World", "040895")
   end
 end

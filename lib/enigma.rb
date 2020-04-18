@@ -105,7 +105,7 @@ class Enigma
     shifted_letters.join
   end
 
-  def encrypt(message, key, date)
+  def encrypt(message, key = random_key, date)
     shift_key = create_shifted_key(key, date)
     converted_numbers = convert_to_numbers(message)
     numbers_shifted = shift_numbers(converted_numbers, shift_key)
