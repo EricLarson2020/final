@@ -80,6 +80,11 @@ class Enigma
   #   :date => date
   #
   # }
+  def covert_to_numbers(input)
+
+
+  end
+
   def shift_numbers(unshifted_array, key)
     unshifted_array.map.with_index do |number, index|
 
