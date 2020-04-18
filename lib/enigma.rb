@@ -80,17 +80,21 @@ class Enigma
   #   :date => date
   #
   # }
-  def shift_numbers(unshifted, key)
+  def shift_numbers(unshifted_array, key)
+    unshifted_array.map.with_index do |number, index|
 
-
-
-    require"pry";binding.pry
-
-
+      if index == 0 || (index % 4 == 0)
+        number + key[:a]
+      elsif index == 1 || ((index - 1) % 4 == 0)
+        number + key[:b]
+      elsif index == 2 || ((index - 2) % 4 == 0)
+        number + key[:c]
+      elsif index == 3 || ((index -3) % 4 == 0)
+        number + key[:d]
+      end
+    end
   end
-
-
-  end
+end
 
 # :encryption => the encrypted String
 # :key => the key used for encryption as a String

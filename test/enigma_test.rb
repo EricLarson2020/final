@@ -64,10 +64,12 @@ class EnigmaTest < MiniTest::Test
     assert_equal expected, enigma.alphabet_hash
   end
 
+  
+
   def test_it_can_shift_numbers
     enigma = Enigma.new
     greeting = [7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3]
-    expected = [10, 4, 3, 4, 17, 26, 14, 7, 20, 11, 22]
+    expected = [10, 31, 84, 31, 17, 53, 95, 34, 20, 38, 76]
     key = {
       :a => 3,
       :b => 27,
