@@ -31,18 +31,18 @@ class Enigma
                       " " => 26}
   end
 
-  
+
   def create_shifted_key(key, date)
     # require"pry";binding.pry
     key_hash = {:a => key[0..1],
                 :b => key[1..2],
                 :c => key[2..3],
                 :d => key[3..4]}
-    key_hash.map do |letter, number|
-      number.to_s
-      number.sub!(/^0/, "")
-      number.to_i
-    end
+    # key_hash.map do |letter, number|
+    #   number.to_s
+    #   number.sub!(/^0/, "")
+    #   number.to_i
+    # end
 
     square_date = (date.to_i ** 2).to_s
     date_hash = {:a => square_date[-4],
