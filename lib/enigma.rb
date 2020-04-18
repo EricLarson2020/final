@@ -97,7 +97,10 @@ class Enigma
     shifted_letters.join
   end
 
-  
+  def encrypt(message, key, date)
+
+
+  end
 
 
 end
