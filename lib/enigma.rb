@@ -31,58 +31,28 @@ class Enigma
                       " " => 26}
   end
 
-  # A: 3
-  # B: 27
-  # C: 73
-  # D: 20
-#
-#   A key: first two digits (02)
-# B key: second and third digits (27)
-# C key: third and fourth digits (71)
-# D key: fourth and fifth digits (15)
-
-# The encrypt method takes a message String as an argument. It can optionally take a
-# Key and Date as arguments to use for encryption. If the key is not included, generate
-#  a random key. If the date is not included, use today’s date.
-
-# Consider the date formatted as a number, DDMMYY. If the date is August 4, 1995, it would be represented as 040895.
-# Square the numeric form (1672401025)
-# Take the last four digits (1025)
-# A offset: The first digit (1)
-# B offset: The second digit (0)
-# C offset: The third digit (2)
-# D offset: The fourth digit (5)
-#
-  # def encrypt(message, key, date)
-  #   a1 = key[0..1]
-  #   b1 = key[1..2]
-  #   c1 = key[2..3]
-  #   d1 = key[3..4]
-  #
-  #   square_date = (date ** 2).to_s
-  #   a2 = square_date[6]
-  #   b2 = squre_date[7]
-  #   c2 = square_date[8]
-  #   d2 = square_date[9]
-  #
-  #
-  #   a = a1 + a2
-  #   b = b1 + b2
-  #   c = c1 + c2
-  #   d = d1 + d2
-  #
-  #
-  #
-  #
-  # encrypted_message =  {
-  #   :encryption => encrypted_string,
-  #   :key => key,
-  #   :date => date
-  #
-  # }
+  
   def create_shifted_key(key, date)
-    require"pry";binding.pry
+    # require"pry";binding.pry
+    key_hash = {:a => key[0..1],
+                :b => key[1..2],
+                :c => key[2..3],
+                :d => key[3..4]}
+    key_hash.map do |letter, number|
+      number.to_s
+      number.sub!(/^0/, "")
+      number.to_i
+    end
 
+    square_date = (date.to_i ** 2).to_s
+    date_hash = {:a => square_date[-4],
+                :b => square_date[-3],
+                :c => square_date[-2],
+                :d => square_date[-1]}
+
+    shift = key_hash.merge!(date_hash) do |letter, key_value, date_value|
+      key_value.to_i + date_value.to_i
+    end
   end
 
 
