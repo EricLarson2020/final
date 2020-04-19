@@ -130,10 +130,10 @@ class EnigmaTest < MiniTest::Test
 
   def test_convert_to_numbers
     enigma = Enigma.new
-    expected = [10, 4, 3, 4, 17, 26, 14, 20, 11, 22]
-    assert_equal , enigma.convert_to_letters("keder ohulw")
-
-
+    expected = [10, 4, 3, 4, 17, 26, 14, 7, 20, 11, 22]
+    assert_equal expected, enigma.convert_to_numbers("keder ohulw")
   end
+
+  
 
 end

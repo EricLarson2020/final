@@ -118,8 +118,15 @@ class Enigma
   end
 
   def convert_to_numbers(encoded_message)
+    encoded_array = encoded_message.downcase.chars
+    encoded_array.map do |letter|
+      alphabet_hash[letter]
+    end
+
+  def shift_numbers(unshifted_numbers)
 
 
+  end
   end
 
 
