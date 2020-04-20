@@ -64,6 +64,90 @@ class Decryption
     end
   end
 
+  def unshift_numbers(unshifted_numbers, key)
+  unshifted_numbers.map.with_index do |number, index|
+
+   if index == 0 || (index % 4 == 0)
+
+    if key[:a] >= 27
+      modulated_number = (key[:a] % 27)
+      if (number - modulated_number) < 0
+        remainder = (modulated_number - number)
+        (27 - remainder)
+      elsif (number - modulated_number > 0)
+        number - modulated_number
+      end
+    elsif key[:a] <= 27
+    if (number - key[:a]) < 0
+      remainder = (key[:a] - number)
+      (27 - remainder)
+    elsif (number - key[:a] > 0)
+      number - key[:a]
+    end
+  end
+
+
+  elsif index == 1 || ((index - 1) % 4 == 0)
+    if key[:b] >= 27
+      modulated_number = (key[:b] % 27)
+      if (number - modulated_number) < 0
+        remainder = (modulated_number - number)
+        (27 - remainder)
+      elsif (number - modulated_number > 0)
+        number - modulated_number
+      end
+    elsif key[:b] <= 27
+    if (number - key[:b]) < 0
+      remainder = (key[:b] - number)
+      (27 - remainder)
+    elsif (number - key[:b] > 0)
+      number - key[:b]
+    end
+  end
+
+
+  elsif index == 2 || ((index - 2) % 4 == 0)
+
+    if key[:c] >= 27
+      modulated_number = (key[:c] % 27)
+      if (number - modulated_number) < 0
+        remainder = (modulated_number - number)
+        (27 - remainder)
+      elsif (number - modulated_number > 0)
+        number - modulated_number
+      end
+    elsif key[:c] <=27
+    if (number - key[:c]) < 0
+      remainder = (key[:c] - number)
+      (27 - remainder)
+    elsif (number - key[:c] > 0)
+      number - key[:c]
+    end
+  end
+
+
+    elsif index == 3 || ((index -3) % 4 == 0)
+      if key[:d] >= 27
+        modulated_number = (key[:d] % 27)
+        if (number - modulated_number) < 0
+          remainder = (modulated_number - number)
+          (27 - remainder)
+        elsif (number - modulated_number > 0)
+          number - modulated_number
+        end
+      elsif key[:d] <= 27
+      if (number - key[:d]) < 0
+        remainder = (key[:d] - number)
+        (27 - remainder)
+      elsif (number - key[:d] > 0)
+        number - key[:d]
+      end
+    end
+  end
+  end
+  end
+
+
 
 
 

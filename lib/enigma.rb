@@ -118,8 +118,6 @@ class Enigma
   end
 
 def unshift_numbers(unshifted_numbers, key)
-
-
 unshifted_numbers.map.with_index do |number, index|
 
  if index == 0 || (index % 4 == 0)
