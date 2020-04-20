@@ -57,49 +57,61 @@ class Encryption
   def convert_to_numbers(input)
     input_array = input.downcase.chars
     input_array.map do |letter|
-      alphabet_hash[letter]
+      if alphabet_hash.key?(letter)
+        alphabet_hash[letter]
+      else
+        letter
+      end
     end
   end
 
   def shift_numbers(unshifted_array, key)
     unshifted_array.map.with_index do |number, index|
+      if number.class == Integer
 
-      if index == 0 || (index % 4 == 0)
-        number + key[:a]
-      elsif index == 1 || ((index - 1) % 4 == 0)
-        number + key[:b]
-      elsif index == 2 || ((index - 2) % 4 == 0)
-        number + key[:c]
-      elsif index == 3 || ((index -3) % 4 == 0)
-        number + key[:d]
+        if index == 0 || (index % 4 == 0)
+          number + key[:a]
+        elsif index == 1 || ((index - 1) % 4 == 0)
+          number + key[:b]
+        elsif index == 2 || ((index - 2) % 4 == 0)
+          number + key[:c]
+        elsif index == 3 || ((index -3) % 4 == 0)
+          number + key[:d]
+        end
+      else
+        number
       end
     end
   end
 
   def convert_to_letters(shifted_numbers)
-
     shifted_letters = shifted_numbers.map do |shifted_number|
+      if shifted_number.class == Integer
       returned_letter = ""
-      if shifted_number > 26
-        reduced_number = shifted_number % 27
-        @alphabet_hash.each do |letter, number|
-          if number == reduced_number
-            returned_letter = letter
+        if shifted_number > 26
+          reduced_number = shifted_number % 27
+          @alphabet_hash.each do |letter, number|
+            if number == reduced_number
+              returned_letter = letter
+            end
+          end
+        else
+          @alphabet_hash.each do |letter, number|
+            if number == shifted_number
+              returned_letter = letter
+            end
           end
         end
+        returned_letter
       else
-        @alphabet_hash.each do |letter, number|
-          if number == shifted_number
-            returned_letter = letter
-          end
-        end
+        shifted_number
       end
-      returned_letter
     end
     shifted_letters.join
   end
 
   def encrypt(message, key = random_key, date)
+
     shift_key = create_shifted_key(key, date)
     converted_numbers = convert_to_numbers(message)
     numbers_shifted = shift_numbers(converted_numbers, shift_key)

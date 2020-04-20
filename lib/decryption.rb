@@ -60,7 +60,11 @@ class Decryption
   def convert_to_numbers(input)
     input_array = input.downcase.chars
     input_array.map do |letter|
-      alphabet_hash[letter]
+      if alphabet_hash.key?(letter)
+        alphabet_hash[letter]
+      else
+        letter
+      end
     end
   end
 
@@ -161,6 +165,7 @@ class Decryption
 
   def decrypt(message, key, date)
   number_message = convert_to_numbers(message)
+  require"pry";binding.pry
   encrypted_key = create_shifted_key(key, date)
   new_numbers = unshift_numbers(number_message, encrypted_key)
   decrypted_message = decrypt_to_letters(new_numbers)
