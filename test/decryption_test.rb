@@ -80,4 +80,23 @@ class DecryptionTest < MiniTest::Test
      assert_equal expected, decryption.unshift_numbers(unshifted_numbers, key)
    end
 
+   def test_convert_to_letters
+    decryption = Decryption.new
+    message = [7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3]
+    assert_equal "hello world", decryption.decrypt_to_letters(message)
+   end
+
+   def test_it_can_decrypt
+     decryption = Decryption.new
+     expected =    {
+      decryption: "hello world",
+      key: "02715",
+      date: "040895"
+    }
+     assert_equal expected, decryption.decrypt("keder ohulw", "02715", "040895")
+   end
+
+
+
+
 end
