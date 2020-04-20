@@ -84,7 +84,8 @@ class EnigmaTest < MiniTest::Test
 
   def test_today_date
     enigma = Enigma.new
-
+    today = Date.new(2020,4,20)
+    enigma.stubs(:today).returns(today)
     assert_equal "042020", enigma.today_date
   end
 

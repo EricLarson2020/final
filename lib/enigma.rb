@@ -38,7 +38,6 @@ class Enigma
   end
 
   def today_date
-    
     (Date.today).strftime("%m%d%y")
 
   end
@@ -46,6 +45,7 @@ class Enigma
   def random_key
     key = (0...5).map { [rand(10)] }.join
   end
+
 
   def encrypt(message, key = random_key, date = today_date)
     @encryption.encrypt(message, key, date)
