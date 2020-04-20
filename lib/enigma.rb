@@ -41,7 +41,7 @@ class Enigma
 
     random_key = (0...5).map { [rand(10)] }.join
 
-    # require"pry";binding.pry
+
     key_hash = {:a => key[0..1],
                 :b => key[1..2],
                 :c => key[2..3],
@@ -118,8 +118,6 @@ class Enigma
   end
 
 def unshift_numbers(unshifted_numbers, key)
-
-
 unshifted_numbers.map.with_index do |number, index|
 
  if index == 0 || (index % 4 == 0)

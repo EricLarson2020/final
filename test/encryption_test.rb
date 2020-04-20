@@ -3,7 +3,7 @@ require 'minitest/pride'
 require 'mocha/minitest'
 require './lib/encryption'
 
-class EncryptTest < MiniTest::Test
+class EncryptionTest < MiniTest::Test
 
   def test_it_exists
     encryption = Encryption.new
