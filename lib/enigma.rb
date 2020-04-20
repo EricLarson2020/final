@@ -119,8 +119,6 @@ class Enigma
 
 def unshift_numbers(unshifted_numbers, key)
 
-  #Case 1: need to key > 27
-  #case 2: key < 27
 
 unshifted_numbers.map.with_index do |number, index|
 
