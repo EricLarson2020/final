@@ -83,6 +83,17 @@ class DecryptionTest < MiniTest::Test
      expected = [7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3]
      unshifted_numbers = [10, 4, 3, 4, 17, 26, 14, 7, 20, 11, 22]
      assert_equal expected, decryption.unshift_numbers(unshifted_numbers, key)
+     key = {
+       :a => 29,
+       :b => 30,
+       :c => 3,
+       :d => 28
+     }
+     unshifted_numbers = [10, 4, 3, 4, 17, 26, 14, 7, 20, 11, 22]
+     expected = [8, 1, 0, 3, 15, 23, 11, 6, 18, 8, 19]
+     assert_equal expected, decryption.unshift_numbers(unshifted_numbers, key)
+
+     
    end
 
    def test_convert_to_letters
