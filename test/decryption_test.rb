@@ -101,7 +101,15 @@ class DecryptionTest < MiniTest::Test
      unshifted_numbers = [3, 4, 5, 6,]
      expected = [6, 8, 10, 12]
      assert_equal expected, decryption.unshift_numbers(unshifted_numbers, key)
-
+     key = {
+       :a => 19,
+       :b => 15,
+       :c => 22,
+       :d =>23
+     }
+     unshifted_numbers = [3, 4, 5, 6, 20, 16, 23, 24, "!"]
+     expected = [11, 16, 10, 10, 1, 1, 1, 1, "!"]
+    assert_equal expected, decryption.unshift_numbers(unshifted_numbers, key)
 
    end
 
