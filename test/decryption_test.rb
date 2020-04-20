@@ -1,7 +1,10 @@
+require 'simplecov'
+SimpleCov.start
 require 'minitest/autorun'
 require 'minitest/pride'
 require 'mocha/minitest'
 require './lib/decryption'
+
 
 class DecryptionTest < MiniTest::Test
 
@@ -46,6 +49,8 @@ class DecryptionTest < MiniTest::Test
     decryption = Decryption.new
     expected = [10, 4, 3, 4, 17, 26, 14, 7, 20, 11, 22]
     assert_equal expected, decryption.convert_to_numbers("keder ohulw")
+    expected =  ["!", 10, 4, 3, 4, 17, 26, 14, 7, 20, 11, 22]
+    assert_equal expected, decryption.convert_to_numbers("!keder ohulw")
   end
 
   def test_random_key
