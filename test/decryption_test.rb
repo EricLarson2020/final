@@ -115,8 +115,8 @@ class DecryptionTest < MiniTest::Test
 
    def test_convert_to_letters
     decryption = Decryption.new
-    message = [7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3]
-    assert_equal "hello world", decryption.decrypt_to_letters(message)
+    message = [7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3, "!"]
+    assert_equal "hello world!", decryption.decrypt_to_letters(message)
    end
 
    def test_it_can_decrypt
