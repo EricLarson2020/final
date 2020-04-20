@@ -81,5 +81,26 @@ class EncryptTest < MiniTest::Test
      assert_equal expected, encryption.shift_numbers(greeting, key)
    end
 
+   def test_it_can_convert_to_letters
+     encryption = Encryption.new
+     greeting_shifted = [10, 31, 84, 31, 17, 53, 95, 34, 20, 38, 76]
+     expected = "keder ohulw"
+     assert_equal expected,  encryption.convert_to_letters(greeting_shifted)
+   end
+
+   def test_encrypt
+     encryption = Encryption.new
+     expected= {
+               encryption: "keder ohulw",
+               key: "02715",
+               date: "040895"
+     }
+
+     assert_equal expected,  encryption.encrypt("Hello World", "02715", "040895")
+     encryption.stubs(:random_key).returns("02715")
+     assert_equal expected,  encryption.encrypt("Hello World", "040895")
+   end
+
+
 
 end
