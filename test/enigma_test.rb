@@ -134,6 +134,21 @@ class EnigmaTest < MiniTest::Test
     assert_equal expected, enigma.convert_to_numbers("keder ohulw")
   end
 
-  
+  def test_it_can_unshift_coded_numbers
+    enigma = Enigma.new
+    key = {
+      :a => 3,
+      :b => 27,
+      :c => 73,
+      :d => 20
+    }
+    expected = [7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3]
+    unshifted_numbers = [10, 4, 3, 4, 17, 26, 14, 7, 20, 11, 22]
+    assert_equal expected, enigma.unshift_numbers(unshifted_numbers, key)
+  end
 
+  def test_it_can_decrypt
+
+
+  end
 end
