@@ -129,7 +129,7 @@ unshifted_numbers.map.with_index do |number, index|
   if key[:a] >= 27
     modulated_number = (key[:a] % 27)
     if (number - modulated_number) < 0
-      remainder = (modulated_numer - number)
+      remainder = (modulated_number - number)
       (27 - remainder)
     elsif (number - modulated_number > 0)
       number - modulated_number
@@ -148,7 +148,7 @@ elsif index == 1 || ((index - 1) % 4 == 0)
   if key[:b] >= 27
     modulated_number = (key[:b] % 27)
     if (number - modulated_number) < 0
-      remainder = (modulated_numer - number)
+      remainder = (modulated_number - number)
       (27 - remainder)
     elsif (number - modulated_number > 0)
       number - modulated_number
@@ -187,7 +187,7 @@ end
     if key[:d] >= 27
       modulated_number = (key[:d] % 27)
       if (number - modulated_number) < 0
-        remainder = (modulated_numer - number)
+        remainder = (modulated_number - number)
         (27 - remainder)
       elsif (number - modulated_number > 0)
         number - modulated_number
@@ -203,6 +203,30 @@ end
 end
 end
 end
+
+  def decrypt_to_letters(message)
+    letter_message = []
+    message.each do |number|
+      alphabet_hash.each do |key, value|
+        if value == number
+          letter_message <<  key
+        end
+      end
+    end
+    letter_message.join
+  end
+
+  def decrypt(message, key, date)
+  number_message = convert_to_numbers(message)
+  encrypted_key = create_shifted_key(key, date)
+  new_numbers = unshift_numbers(number_message, encrypted_key)
+  decrypted_message = decrypt_to_letters(new_numbers)
+  {
+    decryption: decrypted_message,
+    key: key,
+    date: date
+  }
+  end
 
 
 

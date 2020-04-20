@@ -82,7 +82,7 @@ class EnigmaTest < MiniTest::Test
     enigma.stubs(:random_key).returns("02715")
     assert_equal expected, enigma.create_shifted_key("02715", "040895")
     assert_equal expected, enigma.create_shifted_key("040895")
-  end
+   end
 
 
 
@@ -147,8 +147,19 @@ class EnigmaTest < MiniTest::Test
     assert_equal expected, enigma.unshift_numbers(unshifted_numbers, key)
   end
 
+  def test_convert_to_letters
+    enigma = Enigma.new
+    message = [7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3]
+    assert_equal "hello world", enigma.decrypt_to_letters(message)
+  end
+
   def test_it_can_decrypt
-
-
+    enigma = Enigma.new
+    expected =    {
+     decryption: "hello world",
+     key: "02715",
+     date: "040895"
+   }
+    assert_equal expected, enigma.decrypt("keder ohulw", "02715", "040895")
   end
 end
