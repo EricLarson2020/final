@@ -117,10 +117,123 @@ class Enigma
     }
   end
 
-  def convert_to_numbers(encoded_message)
+def unshift_numbers(unshifted_numbers, key)
 
+  #Case 1: need to key > 27
+  #case 2: key < 27
 
+unshifted_numbers.map.with_index do |number, index|
+
+ if index == 0 || (index % 4 == 0)
+
+  if key[:a] >= 27
+    modulated_number = (key[:a] % 27)
+    if (number - modulated_number) < 0
+      remainder = (modulated_number - number)
+      (27 - remainder)
+    elsif (number - modulated_number > 0)
+      number - modulated_number
+    end
+  elsif key[:a] <= 27
+  if (number - key[:a]) < 0
+    remainder = (key[:a] - number)
+    (27 - remainder)
+  elsif (number - key[:a] > 0)
+    number - key[:a]
   end
+end
+
+
+elsif index == 1 || ((index - 1) % 4 == 0)
+  if key[:b] >= 27
+    modulated_number = (key[:b] % 27)
+    if (number - modulated_number) < 0
+      remainder = (modulated_number - number)
+      (27 - remainder)
+    elsif (number - modulated_number > 0)
+      number - modulated_number
+    end
+  elsif key[:b] <= 27
+  if (number - key[:b]) < 0
+    remainder = (key[:b] - number)
+    (27 - remainder)
+  elsif (number - key[:b] > 0)
+    number - key[:b]
+  end
+end
+
+
+elsif index == 2 || ((index - 2) % 4 == 0)
+
+  if key[:c] >= 27
+    modulated_number = (key[:c] % 27)
+    if (number - modulated_number) < 0
+      remainder = (modulated_number - number)
+      (27 - remainder)
+    elsif (number - modulated_number > 0)
+      number - modulated_number
+    end
+  elsif key[:c] <=27
+  if (number - key[:c]) < 0
+    remainder = (key[:c] - number)
+    (27 - remainder)
+  elsif (number - key[:c] > 0)
+    number - key[:c]
+  end
+end
+
+
+  elsif index == 3 || ((index -3) % 4 == 0)
+    if key[:d] >= 27
+      modulated_number = (key[:d] % 27)
+      if (number - modulated_number) < 0
+        remainder = (modulated_number - number)
+        (27 - remainder)
+      elsif (number - modulated_number > 0)
+        number - modulated_number
+      end
+    elsif key[:d] <= 27
+    if (number - key[:d]) < 0
+      remainder = (key[:d] - number)
+      (27 - remainder)
+    elsif (number - key[:d] > 0)
+      number - key[:d]
+    end
+  end
+end
+end
+end
+
+  def decrypt_to_letters(message)
+    letter_message = []
+    message.each do |number|
+      alphabet_hash.each do |key, value|
+        if value == number
+          letter_message <<  key
+        end
+      end
+    end
+    letter_message.join
+  end
+
+  def decrypt(message, key, date)
+  number_message = convert_to_numbers(message)
+  encrypted_key = create_shifted_key(key, date)
+  new_numbers = unshift_numbers(number_message, encrypted_key)
+  decrypted_message = decrypt_to_letters(new_numbers)
+  {
+    decryption: decrypted_message,
+    key: key,
+    date: date
+  }
+  end
+
+
+
+
+
+
+
 
 
 end
