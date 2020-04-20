@@ -47,4 +47,24 @@ class DecryptionTest < MiniTest::Test
     expected = [10, 4, 3, 4, 17, 26, 14, 7, 20, 11, 22]
     assert_equal expected, decryption.convert_to_numbers("keder ohulw")
   end
+
+  def test_random_key
+    decryption = Decryption.new
+    decryption.stubs(:rand).returns(5)
+    assert_equal "55555", decryption.random_key
+  end
+
+  def test_it_can_create_shifted_key
+    decryption = Decryption.new
+    expected = {
+      :a => 3,
+      :b => 27,
+      :c => 73,
+      :d => 20
+    }
+    decryption.stubs(:random_key).returns("02715")
+    assert_equal expected, decryption.create_shifted_key("02715", "040895")
+    assert_equal expected, decryption.create_shifted_key("040895")
+   end
+
 end
