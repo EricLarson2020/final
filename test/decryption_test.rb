@@ -1,7 +1,10 @@
+require 'simplecov'
+SimpleCov.start
 require 'minitest/autorun'
 require 'minitest/pride'
 require 'mocha/minitest'
 require './lib/decryption'
+
 
 class DecryptionTest < MiniTest::Test
 
@@ -46,6 +49,8 @@ class DecryptionTest < MiniTest::Test
     decryption = Decryption.new
     expected = [10, 4, 3, 4, 17, 26, 14, 7, 20, 11, 22]
     assert_equal expected, decryption.convert_to_numbers("keder ohulw")
+    expected =  ["!", 10, 4, 3, 4, 17, 26, 14, 7, 20, 11, 22]
+    assert_equal expected, decryption.convert_to_numbers("!keder ohulw")
   end
 
   def test_random_key
@@ -78,12 +83,40 @@ class DecryptionTest < MiniTest::Test
      expected = [7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3]
      unshifted_numbers = [10, 4, 3, 4, 17, 26, 14, 7, 20, 11, 22]
      assert_equal expected, decryption.unshift_numbers(unshifted_numbers, key)
+     key = {
+       :a => 29,
+       :b => 30,
+       :c => 3,
+       :d => 28
+     }
+     unshifted_numbers = [10, 4, 3, 4, 17, 26, 14, 7, 20, 11, 22]
+     expected = [8, 1, 0, 3, 15, 23, 11, 6, 18, 8, 19]
+     assert_equal expected, decryption.unshift_numbers(unshifted_numbers, key)
+     key = {
+       :a => 51,
+       :b => 50,
+       :c => 49,
+       :d => 48
+     }
+     unshifted_numbers = [3, 4, 5, 6,]
+     expected = [6, 8, 10, 12]
+     assert_equal expected, decryption.unshift_numbers(unshifted_numbers, key)
+     key = {
+       :a => 19,
+       :b => 15,
+       :c => 22,
+       :d =>23
+     }
+     unshifted_numbers = [3, 4, 5, 6, 20, 16, 23, 24, "!"]
+     expected = [11, 16, 10, 10, 1, 1, 1, 1, "!"]
+    assert_equal expected, decryption.unshift_numbers(unshifted_numbers, key)
+
    end
 
    def test_convert_to_letters
     decryption = Decryption.new
-    message = [7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3]
-    assert_equal "hello world", decryption.decrypt_to_letters(message)
+    message = [7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3, "!"]
+    assert_equal "hello world!", decryption.decrypt_to_letters(message)
    end
 
    def test_it_can_decrypt
