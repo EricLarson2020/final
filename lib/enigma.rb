@@ -39,7 +39,6 @@ class Enigma
 
   def today_date
     (Date.today).strftime("%m%d%y")
-
   end
 
   def random_key

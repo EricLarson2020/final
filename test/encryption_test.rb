@@ -66,15 +66,15 @@ class EncryptionTest < MiniTest::Test
 
    def test_it_can_convert_to_numbers
      encryption = Encryption.new
-     user_input = "Hello World"
-     expected = [7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3]
+     user_input = "Hello World!"
+     expected = [7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3, "!"]
      assert_equal expected, encryption.convert_to_numbers(user_input)
    end
 
    def test_it_can_shift_numbers
      encryption = Encryption.new
-     greeting = [7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3]
-     expected = [10, 31, 84, 31, 17, 53, 95, 34, 20, 38, 76]
+     greeting = [7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3, "!"]
+     expected = [10, 31, 84, 31, 17, 53, 95, 34, 20, 38, 76, "!"]
      key = {
        :a => 3,
        :b => 27,
@@ -86,8 +86,8 @@ class EncryptionTest < MiniTest::Test
 
    def test_it_can_convert_to_letters
      encryption = Encryption.new
-     greeting_shifted = [10, 31, 84, 31, 17, 53, 95, 34, 20, 38, 76]
-     expected = "keder ohulw"
+     greeting_shifted = [10, 31, 84, 31, 17, 53, 95, 34, 20, 38, 76, "!"]
+     expected = "keder ohulw!"
      assert_equal expected,  encryption.convert_to_letters(greeting_shifted)
    end
 

@@ -7,12 +7,6 @@ require './lib/encryption'
 require'./lib/decryption'
 require 'mocha/minitest'
 
-
-
-
-
-
-
 class EnigmaTest < MiniTest::Test
 
 
@@ -64,6 +58,8 @@ class EnigmaTest < MiniTest::Test
 
   def test_random_key
     enigma = Enigma.new
+    assert enigma.random_key[0].to_i < 10 && enigma.random_key[0].to_i >= 0
+    assert_equal 5, enigma.random_key.length
     enigma.stubs(:rand).returns(5)
     assert_equal "55555", enigma.random_key
   end
@@ -105,10 +101,12 @@ class EnigmaTest < MiniTest::Test
      key: "02715",
      date: "040895"
    }
+
     assert_equal expected, enigma.decrypt("keder ohulw", "02715", "040895")
     enigma.stubs(:today_date).returns("040895")
     assert_equal expected,  enigma.decrypt(encrypted[:encryption], "02715")
   end
+
 
 
 end
