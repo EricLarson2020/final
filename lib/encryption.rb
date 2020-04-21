@@ -87,7 +87,7 @@ class Encryption
   def convert_to_letters(shifted_numbers)
     shifted_letters = shifted_numbers.map do |shifted_number|
       if shifted_number.class == Integer
-      returned_letter = ""
+        returned_letter = ""
         if shifted_number > 26
           reduced_number = shifted_number % 27
           @alphabet_hash.each do |letter, number|
