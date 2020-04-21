@@ -5,12 +5,13 @@ read_message = message.read
 message.close
 
 enigma = Enigma.new
-
-encrypted_message = enigma.encrypt(read_message, "02715", "040895")
+# , "02715", "040895"
+encrypted_message = enigma.encrypt(read_message)
 
 
 writer = File.open(ARGV[1], "w")
 writer.write(encrypted_message[:encryption])
 writer.close
 
-decrypted_message = enigma.decrypt(encrypted_message[:encryption], "02715", "040895")
+#decrypted_message = enigma.decrypt(encrypted_message[:encryption], "02715", "040895")
+p "Created #{(ARGV[1])} with the key #{encrypted_message[:key]} and date #{encrypted_message[:date]}"
