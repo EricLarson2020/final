@@ -5,8 +5,8 @@ read_message = message.read
 message.close
 
 enigma = Enigma.new
-# , "02715", "040895"
-encrypted_message = enigma.encrypt(read_message)
+ , "02715", "040895"
+encrypted_message = enigma.encrypt(read_message, "02715", "040895")
 
 
 writer = File.open(ARGV[1], "w")
